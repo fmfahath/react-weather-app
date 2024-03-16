@@ -28,7 +28,7 @@ const WeatherApp = () => {
             </div>
 
             {/* weather condition */}
-            <div className="weather-temp">25 °C</div>
+            <div className="weather-temp">25°c</div>
 
             {/* weather location */}
             <div className="weather-location">London</div>
