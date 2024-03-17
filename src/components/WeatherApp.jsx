@@ -1,22 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './weatherApp.css'
 import search_icon from '../assets/search.png'
-import clear_img from '../assets/clear.png'
-import cloud_img from '../assets/cloud.png'
-import drizzle_img from '../assets/drizzle.png'
-import humidity_img from '../assets/humidity.png'
-import rain_img from '../assets/rain.png'
-import search_img from '../assets/search.png'
-import snow_img from '../assets/snow.png'
-import wind_img from '../assets/wind.png'
-import { clear } from '@testing-library/user-event/dist/clear'
+import clear_icon from '../assets/clear.png'
+import cloud_icon from '../assets/cloud.png'
+import drizzle_icon from '../assets/drizzle.png'
+import humidity_icon from '../assets/humidity.png'
+import rain_icon from '../assets/rain.png'
+import snow_icon from '../assets/snow.png'
+import wind_icon from '../assets/wind.png'
 
 const WeatherApp = () => {
 
     let apiKey = '04139978167fb2218b0159a7fae7746c';
 
+    const [weatherIcon, setWeatherIcon] = useState(cloud_icon);
+
+
     // search function
     const search = async () => {
+
 
         const element = document.getElementsByClassName('cityInput');
         if (element[0].value === "") {
@@ -41,6 +43,28 @@ const WeatherApp = () => {
         humidity[0].innerHTML = data.main.humidity + "%";
         windSpeed[0].innerHTML = data.wind.speed + " Kmph";
 
+        //check weather icon
+        if (data.weather[0].icon === '01d' || data.weather[0].icon === '01n') {
+            setWeatherIcon(clear_icon)
+        }
+        else if (data.weather[0].icon === '02d' || data.weather[0].icon === '02n') {
+            setWeatherIcon(cloud_icon)
+        }
+        else if (data.weather[0].icon === '03d' || data.weather[0].icon === '03n') {
+            setWeatherIcon(drizzle_icon)
+        }
+        else if (data.weather[0].icon === '04d' || data.weather[0].icon === '04n') {
+            setWeatherIcon(clear_icon)
+        }
+        else if (data.weather[0].icon === '09d' || data.weather[0].icon === '09n') {
+            setWeatherIcon(rain_icon)
+        }
+        else if (data.weather[0].icon === '13d' || data.weather[0].icon === '13n') {
+            setWeatherIcon(snow_icon)
+        }
+        else {
+            setWeatherIcon(clear_icon)
+        }
 
     }
     return (
@@ -55,7 +79,7 @@ const WeatherApp = () => {
 
             {/* weather image */}
             <div className="weather-image">
-                <img src={clear_img} alt="" />
+                <img src={weatherIcon} alt="" />
             </div>
 
             {/* weather condition */}
@@ -67,14 +91,14 @@ const WeatherApp = () => {
             {/* humidity / wind  */}
             <div className="data-container">
                 <div className="element">
-                    <img src={humidity_img} alt="" className="icon" />
+                    <img src={humidity_icon} alt="" className="icon" />
                     <div className="data">
                         <div className="humidity-per">64%</div>
                         <div className="text">Humidity</div>
                     </div>
                 </div>
                 <div className="element">
-                    <img src={wind_img} alt="" className="icon" />
+                    <img src={wind_icon} alt="" className="icon" />
                     <div className="data">
                         <div className="wind-speed">85 Kmph</div>
                         <div className="text">Wind Speed</div>
