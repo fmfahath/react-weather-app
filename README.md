@@ -9,6 +9,10 @@
 
 <br>
 
+![image](https://github.com/fmfahath/react-weather-app/assets/95971934/7ed7de5f-2d16-4d94-83c1-b290110273c7)
+
+
+
 
   
 </div>
