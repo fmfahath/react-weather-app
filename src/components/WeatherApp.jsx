@@ -38,10 +38,10 @@ const WeatherApp = () => {
         const humidity = document.getElementsByClassName('humidity-per');
         const windSpeed = document.getElementsByClassName('wind-speed');
 
-        temperature[0].innerHTML = data.main.temp + "°c";
+        temperature[0].innerHTML = Math.floor(data.main.temp) + "°c";
         city[0].innerHTML = data.name;
         humidity[0].innerHTML = data.main.humidity + "%";
-        windSpeed[0].innerHTML = data.wind.speed + " Kmph";
+        windSpeed[0].innerHTML = Math.floor(data.wind.speed) + " Kmph";
 
         //check weather icon
         if (data.weather[0].icon === '01d' || data.weather[0].icon === '01n') {
