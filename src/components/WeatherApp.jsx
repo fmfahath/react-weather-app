@@ -12,12 +12,31 @@ import wind_img from '../assets/wind.png'
 import { clear } from '@testing-library/user-event/dist/clear'
 
 const WeatherApp = () => {
+
+    let apiKey = '04139978167fb2218b0159a7fae7746c';
+
+    // search function
+    const search = async () => {
+
+        const element = document.getElementsByClassName('cityInput');
+        if (element[0].value === "") {
+            return 0;
+        }
+
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${apiKey}`;
+
+        // fetch API
+        let response = await fetch(url);
+        let data = await response.json();
+        // console.log(result)
+
+    }
     return (
         <div className='container'>
             {/* searchbar */}
             <div className="top-bar">
                 <input type="text" className="cityInput" placeholder='Search' />
-                <div className="search-icon">
+                <div className="search-icon" onClick={() => search()}>
                     <img src={search_icon} alt="" />
                 </div>
             </div>
@@ -45,7 +64,7 @@ const WeatherApp = () => {
                 <div className="element">
                     <img src={wind_img} alt="" className="icon" />
                     <div className="data">
-                        <div className="humidity-per">85 Kmph</div>
+                        <div className="wind-speed">85 Kmph</div>
                         <div className="text">Wind Speed</div>
                     </div>
                 </div>
