@@ -30,6 +30,18 @@ const WeatherApp = () => {
         let data = await response.json();
         // console.log(result)
 
+        // get elemet & update data
+        const temperature = document.getElementsByClassName('weather-temp');
+        const city = document.getElementsByClassName('weather-location');
+        const humidity = document.getElementsByClassName('humidity-per');
+        const windSpeed = document.getElementsByClassName('wind-speed');
+
+        temperature[0].innerHTML = data.main.temp + "°c";
+        city[0].innerHTML = data.name;
+        humidity[0].innerHTML = data.main.humidity + "%";
+        windSpeed[0].innerHTML = data.wind.speed + " Kmph";
+
+
     }
     return (
         <div className='container'>
